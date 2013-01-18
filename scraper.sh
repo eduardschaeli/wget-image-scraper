@@ -1,22 +1,28 @@
 #!/bin/sh
-mkdir downloads
 for line in `cat sites.txt`; do
   # replace http://
   stripped_url=`echo $line| cut -c8-`
-  target_folder="downloads/$stripped_url"
+  target_folder="downloads/`echo $stripped_url|sed 's/\//_/g'`"
 
   echo $stripped_url
-  mkdir $target_folder
   echo ""
   echo ""
   echo ""
   echo "Scraping $stripped_url"
   echo "-----------------------------------"
   echo "> creating folder.."
-  mkdir $target_folder
+  echo $target_folder
+  mkdir -p $target_folder
   echo "> scraping $stripped_url"
-  wget -e robots=off --recursive -p \
-    -nd -nc -np --accept jpg,jpeg,png,gif -P $target_folder --wait 0.5 $stripped_url
+  wget -e robots=off \
+    -H -nd -nc -np \
+    --recursive -p \
+    --level=1 \
+    --accept jpg,jpeg,png,gif \
+    --convert-links -N \
+    --limit-rate=200k \
+    --wait 1.0 \
+    -P $target_folder $stripped_url
   echo ""
   echo ""
   echo "> Finished scraping $stripped_url"
