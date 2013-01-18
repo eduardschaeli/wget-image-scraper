@@ -7,7 +7,7 @@ It will be used in an art project by Stefan Baltensperger.
 
 Usage:
   - Add urls to the sites.txt file like this
-      http://www.tagi.ch
+      http://www.yoursite.ch
     The HTTP:// part ist important!
   - Make the scraper.sh shell script executable:
       chmod +x scraper.sh
