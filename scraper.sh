@@ -22,7 +22,8 @@ for line in `cat sites.txt`; do
     --convert-links -N \
     --limit-rate=200k \
     --wait 1.0 \
-    -P $target_folder $stripped_url
+    -P $target_folder $stripped_url \
+    -U 'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.1.6) Gecko/20070802 SeaMonkey/1.1.4'
   echo ""
   echo ""
   echo "> Finished scraping $stripped_url"
